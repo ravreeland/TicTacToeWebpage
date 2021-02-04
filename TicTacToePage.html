@@ -6,33 +6,138 @@
     <body>
         <div id="introductionArea"> 
             <h1> Welcome to Tic Tac Toe! </h1>
-            <span>Player 1</span> <b>VS</b> <span> Player 2</span>
+            <h2>
+                <span>Player X</span> 
+                <b>VS</b> 
+                <span> Player O</span>
+            </h2>
+            <p> Player X starts, and than each round alternates between X and O starting, regardless of who won.</p>
+            <br>
+            <br>
         </div>
         <div id="gamePlayArea">
             <div id="scoreBoard">
-
+                <span> </span>
+                
+                <div id="reset">
+                    <button onclick="onReset()"> New Game! </button>
+                </div>
             </div>
             <div id="gameBoard"> 
                 <div id="row1"> 
-                    <img id="11" src="./images/bImage.png" alt="Row 1, Col 1: blank">
-                    <img id="12" src="./images/bImage.png" alt="Row 1, Col 2: blank"> 
-                    <img id="13" src="./images/bImage.png" alt="Row 1, Col 3: blank">  
+                    <button id="oneOneB" onclick="onButtonClick('oneOne')">
+                        <img id="oneOne" src="./images/bImage.png" alt="Row 1, Col 1: blank">
+                    </button>
+                    <button id="oneTwoB" onclick="onButtonClick('oneTwo')">
+                        <img id="oneTwo" src="./images/bImage.png" alt="Row 1, Col 2: blank">
+                    </button>
+                    <button id="oneThreeB" onclick="onButtonClick('oneThree')">
+                        <img id="oneThree" src="./images/bImage.png" alt="Row 1, Col 3: blank">
+                    </button>  
                 </div>
                 <div id="row2"> 
-                    <img id="21" src="./images/bImage.png" alt="Row 2, Col 1: blank">
-                    <img id="22" src="./images/bImage.png" alt="Row 2, Col 2: blank"> 
-                    <img id="23" src="./images/bImage.png" alt="Row 2, Col 3: blank">
+                    <button id="twoOneB" onclick="onButtonClick('twoOne')">
+                        <img id="twoOne" src="./images/bImage.png" alt="Row 2, Col 1: blank">
+                    </button>
+                    <button id="twoTwoB" onclick="onButtonClick('twoTwo')">
+                        <img id="twoTwo" src="./images/bImage.png" alt="Row 2, Col 2: blank">
+                    </button> 
+                    <button id="twoThreeB" onclick="onButtonClick('twoThree')">
+                        <img id="twoThree" src="./images/bImage.png" alt="Row 2, Col 3: blank">
+                    </button>
                 </div>
                 <div id="row3"> 
-                    <img id="31" src="./images/bImage.png" alt="Row 3, Col 1: blank">
-                    <img id="32" src="./images/bImage.png" alt="Row 3, Col 2: blank"> 
-                    <img id="33" src="./images/bImage.png" alt="Row 3, Col 3: blank">
+                    <button id="threeOneB" onclick="onButtonClick('threeOne')">
+                        <img id="threeOne" src="./images/bImage.png" alt="Row 3, Col 1: blank">
+                    </button>
+                    <button id="threeTwoB" onclick="onButtonClick('threeTwo')">
+                        <img id="threeTwo" src="./images/bImage.png" alt="Row 3, Col 2: blank">
+                    </button>
+                    <button id="threeThreeB" onclick="onButtonClick('threeThree')">
+                        <img id="threeThree" src="./images/bImage.png" alt="Row 3, Col 3: blank">
+                    </button>
                 </div>
+                
             </div>
 
         </div>
     </body>
+    <script>
+        let xScore = 0;
+        let yScore = 0;
+        let xTurn = true;
+        let roundNum = 1;
+        const imgEleArray = [
+            [document.getElementById("oneOne"), document.getElementById("oneTwo"), document.getElementById("oneThree")],
+            [document.getElementById("twoOne"), document.getElementById("twoTwo"), document.getElementById("twoThree")],
+            [document.getElementById("threeOne"), document.getElementById("threeTwo"), document.getElementById("threeThree")]
+        ]
 
+        const onButtonClick = (id) => {
+            let sourceImage = "./images/"
+            if (xTurn === true){
+                sourceImage = sourceImage + "xImage.png";
+                xTurn = false;
+            } else{
+                sourceImage = sourceImage + "oImage.png";
+                xTurn = true;
+            }
+            document.getElementById(id).setAttribute("src", sourceImage)
+            //once image changed, add in check for victory
+        }
+        const onReset = () => {
+            imgEleArray.forEach(arr => {
+                arr.forEach(ele => {
+                    ele.setAttribute("src", "./images/bImage.png")
+                }) 
+            })
+        }
+        const meetsWinCondition = (first, second, third) => {
+            // function to compare three images in row, returns true and image source if all are equal, false and "none", if not
+            let winCondition;
+            
+            if (first === second){
+                if (first === third){
+                    //All are equal
+                    winCondition = true; 
+                } else{
+                    // if first != third
+                    winCondition = false;
+                } 
+            } else {
+                // first != second
+                winCondition = false;
+            }
+            
+            if (first === './images/bImage.png') { //ignoring bImage.png
+                return [winCondition, "none"];
+            } else { // doesn't meet win condition with bImage.png
+                return [winCondition, first];
+            }
+         
+        }
+        const scanVerticle = () => {
+            //Each element in vertScans is a [bool, str] array
+            let whoWon;
+            const vertScans = [ 
+                meetsWinCondition(imgEleArray[0][0].getAttribute("src"), imgEleArray[1][0].getAttribute("src"), imgEleArray[2][0].getAttribute("src")),
+                meetsWinCondition(imgEleArray[0][1].getAttribute("src"), imgEleArray[1][1].getAttribute("src"), imgEleArray[2][1].getAttribute("src")), 
+                meetsWinCondition(imgEleArray[0][2].getAttribute("src"), imgEleArray[1][2].getAttribute("src"), imgEleArray[2][2].getAttribute("src"))
+                ]
+            
+            for(let i =0; i<vertScans.length; i++){
+                if(vertScans[i][0]===true){
+
+
+                }
+            }
+        
+           
+        }
+
+
+
+    </script>
 
 
 </html>
