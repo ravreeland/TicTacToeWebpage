@@ -79,6 +79,11 @@
                     ele.setAttribute("src", "./images/bImage.png")
                 }) 
             })
+            document.getElementById("winnerDeclaration").innerHTML = ""
+            roundNum = 1;
+            xScore = 0;
+            yScore = 0;
+            xTurn = true;
         }
         const onButtonClick = (id) => {
             let sourceImage = "./images/"
@@ -106,7 +111,13 @@
             const winner = winningImage.split('/')[2].charAt(0).toUpperCase();
             console.log(`Winner is ${winner}`);
             onReset();
-            document.getElementById("winnerDeclaration")
+            document.getElementById("winnerDeclaration").innerHTML = `Winner was ${winner}! New Round to begin.`
+            roundNum++;
+            if (roundNum%2===0){
+                xTurn = false;
+            } else {
+                xTurn = true;
+            }
         }
         const meetsWinCondition = (first, second, third) => {
             // function to compare three images in row, returns true and image source if all are equal, false and "none", if not
