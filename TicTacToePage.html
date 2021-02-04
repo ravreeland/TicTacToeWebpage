@@ -85,6 +85,7 @@
             document.getElementById(id).setAttribute("src", sourceImage)
             //once image changed, add in check for victory
             console.log(scanVerticle());
+            console.log(scanHorizontal());
         }
         const onReset = () => {
             imgEleArray.forEach(arr => {
@@ -135,7 +136,24 @@
         
            return whoWon;
         }
-
+        const scanHorizontal = () => {
+            //Each element in vertScans is a [bool, str] array
+            let whoWon = [false, "none"]; //assuming false and no winner at begining
+            const horzScans = [ 
+                meetsWinCondition(imgEleArray[0][0].getAttribute("src"), imgEleArray[0][1].getAttribute("src"), imgEleArray[0][2].getAttribute("src")),
+                meetsWinCondition(imgEleArray[1][0].getAttribute("src"), imgEleArray[1][1].getAttribute("src"), imgEleArray[1][2].getAttribute("src")), 
+                meetsWinCondition(imgEleArray[2][0].getAttribute("src"), imgEleArray[2][1].getAttribute("src"), imgEleArray[2][2].getAttribute("src"))
+                ]
+            
+            for(let i =0; i<horzScans.length; i++){
+                if(horzScans[i][0]===true){
+                    whoWon = horzScans[i];
+                    break;
+                }
+            }
+        
+           return whoWon;
+        }
 
 
 
