@@ -154,6 +154,22 @@
         
            return whoWon;
         }
+        const scanDiagonally = () => {
+            //Each element in vertScans is a [bool, str] array
+            let whoWon = [false, "none"]; //assuming false and no winner at begining
+            const diagScans = [ 
+                meetsWinCondition(imgEleArray[0][0].getAttribute("src"), imgEleArray[1][1].getAttribute("src"), imgEleArray[2][2].getAttribute("src")),
+                meetsWinCondition(imgEleArray[2][0].getAttribute("src"), imgEleArray[1][1].getAttribute("src"), imgEleArray[0][2].getAttribute("src"))
+                ]
+            
+            for(let i =0; i<diagScans.length; i++){
+                if(diagScans[i][0]===true){
+                    whoWon = diagScans[i];
+                    break;
+                }
+            }
+           return whoWon;
+        }
 
 
 
