@@ -84,6 +84,7 @@
             }
             document.getElementById(id).setAttribute("src", sourceImage)
             //once image changed, add in check for victory
+            console.log(scanVerticle());
         }
         const onReset = () => {
             imgEleArray.forEach(arr => {
@@ -110,7 +111,7 @@
             }
             
             if (first === './images/bImage.png') { //ignoring bImage.png
-                return [winCondition, "none"];
+                return [false, "none"];
             } else { // doesn't meet win condition with bImage.png
                 return [winCondition, first];
             }
@@ -118,7 +119,7 @@
         }
         const scanVerticle = () => {
             //Each element in vertScans is a [bool, str] array
-            let whoWon;
+            let whoWon = [false, "none"]; //assuming false and no winner at begining
             const vertScans = [ 
                 meetsWinCondition(imgEleArray[0][0].getAttribute("src"), imgEleArray[1][0].getAttribute("src"), imgEleArray[2][0].getAttribute("src")),
                 meetsWinCondition(imgEleArray[0][1].getAttribute("src"), imgEleArray[1][1].getAttribute("src"), imgEleArray[2][1].getAttribute("src")), 
@@ -127,13 +128,14 @@
             
             for(let i =0; i<vertScans.length; i++){
                 if(vertScans[i][0]===true){
-
-
+                    whoWon = vertScans[i];
+                    break;
                 }
             }
         
-           
+           return whoWon;
         }
+
 
 
 
