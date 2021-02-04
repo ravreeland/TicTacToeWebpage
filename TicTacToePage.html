@@ -57,7 +57,7 @@
                         <img id="threeThree" src="./images/bImage.png" alt="Row 3, Col 3: blank">
                     </button>
                 </div>
-                
+                <p id="winnerDeclaration"></p>
             </div>
 
         </div>
@@ -73,6 +73,13 @@
             [document.getElementById("threeOne"), document.getElementById("threeTwo"), document.getElementById("threeThree")]
         ]
 
+        const onReset = () => {
+            imgEleArray.forEach(arr => {
+                arr.forEach(ele => {
+                    ele.setAttribute("src", "./images/bImage.png")
+                }) 
+            })
+        }
         const onButtonClick = (id) => {
             let sourceImage = "./images/"
             if (xTurn === true){
@@ -84,15 +91,22 @@
             }
             document.getElementById(id).setAttribute("src", sourceImage)
             //once image changed, add in check for victory
-            console.log(scanVerticle());
-            console.log(scanHorizontal());
+            checkForVictory();
         }
-        const onReset = () => {
-            imgEleArray.forEach(arr => {
-                arr.forEach(ele => {
-                    ele.setAttribute("src", "./images/bImage.png")
-                }) 
-            })
+        const checkForVictory = () => {
+            const scans = [scanVerticle(), scanHorizontal(), scanDiagonally()];
+            for (let i =0; i< scans.length; i++){
+                if (scans[i][0]===true){
+                    callVictory(scans[i][1]);
+                    break;
+                }
+            }
+        }
+        const callVictory = winningImage => {
+            const winner = winningImage.split('/')[2].charAt(0).toUpperCase();
+            console.log(`Winner is ${winner}`);
+            onReset();
+            document.getElementById("winnerDeclaration")
         }
         const meetsWinCondition = (first, second, third) => {
             // function to compare three images in row, returns true and image source if all are equal, false and "none", if not
