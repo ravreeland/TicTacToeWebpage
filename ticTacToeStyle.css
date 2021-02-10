@@ -25,8 +25,22 @@ th {
     font-variant: small-caps;
 }
 
-board.button{
+.boardRow button{
     background-color: darkblue;
     border-style: none;
-    float: left;
+    outline-style: none;
+    width: auto;
+    height: auto;
+}
+.boardRow {
+    margin: 10pt 10pt 10pt 10pt;
+    padding-left: 10pt;
+    padding-right: 10pt;
+}
+.boardRow img {
+    width: auto;
+    height: auto;
+}
+.board {
+
 }
