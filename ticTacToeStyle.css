@@ -32,7 +32,8 @@ tr {
 
 }
 
-.boardRow button{
+.boardRow button {
+    /* I wanted to invisible buttons, which is why background needs to be the same as body background*/
     background-color: darkblue;
     border-style: none;
     outline-style: none;
@@ -50,6 +51,8 @@ tr {
 }
 
 #winnerDeclaration {
+    /* changing height of this cell to prevent page from moving
+    elements (particularly the game board) around when winnerDecelartion is updated.*/
     height: 70pt;
     border-style: none;
 }
