@@ -18,11 +18,18 @@ table {
     margin-right: auto;
     width: 25%;
     font-size: x-large;
-}
 
+}
+th, td {
+    border-style: solid;
+}
 th {
     font-weight: bold;
     font-variant: small-caps;
+}
+tr {
+    text-align: center;
+
 }
 
 .boardRow button{
@@ -41,6 +48,8 @@ th {
     width: auto;
     height: auto;
 }
-.board {
 
+#winnerDeclaration {
+    height: 70pt;
+    border-style: none;
 }

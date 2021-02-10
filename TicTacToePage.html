@@ -30,12 +30,14 @@
                         <td id="xScore"> 0 </td>
                         <td id="oScore"> 0 </td>
                     </tr>
+                    <tr>
+                        <td id="winnerDeclaration" colspan=2> </td>
+                    </tr>
                 </table>
 
              
             </div>
             <div id="gameBoard" class="board"> 
-                <p id="winnerDeclaration"></p>
                 <div id="row1" class="boardRow"> 
                     <button id="oneOneB" onclick="onButtonClick('oneOne')">
                         <img id="oneOne" src="./images/bImage.png" alt="Row 1, Col 1: blank">
@@ -113,18 +115,27 @@
         }
 
         const onButtonClick = (id) => {
-            let sourceImage = "./images/"
-            if (xTurn === true){
-                sourceImage = sourceImage + "xImage.png";
-                xTurn = false;
-            } else{
-                sourceImage = sourceImage + "oImage.png";
-                xTurn = true;
+            const targetedSquare = document.getElementById(id);
+            //If the square is the blank image, go ahead and do everything that needs to be done
+            //if not, don't do anything.
+            if(targetedSquare.getAttribute("src") === "./images/bImage.png"){
+                document.getElementById("winnerDeclaration").innerHTML = " ";
+                let sourceImage = "./images/"
+                if (xTurn === true){
+                    sourceImage = sourceImage + "xImage.png";
+                    xTurn = false;
+                } else{
+                    sourceImage = sourceImage + "oImage.png";
+                    xTurn = true;
+                }
+                turnNum++;
+                targetedSquare.setAttribute("src", sourceImage)
+                //once image changed, add in check for victory
+                checkForVictory();
+            } else {
+                document.getElementById("winnerDeclaration").innerHTML = "Square already chosen! Pick Another!";
             }
-            turnNum++;
-            document.getElementById(id).setAttribute("src", sourceImage)
-            //once image changed, add in check for victory
-            checkForVictory();
+          
         }
 
         const checkForVictory = () => {
