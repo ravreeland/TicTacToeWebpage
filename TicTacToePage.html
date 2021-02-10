@@ -2,15 +2,13 @@
 <html>
     <head>
         <title> Tic Tac Toe </title>
-        <link src="./ticTacToeStyle.css" type="text/css" rel="stylesheet">
+        <link href="./ticTacToeStyle.css" type="text/css" rel="stylesheet">
     </head>
     <body>
         <div id="introductionArea"> 
-            <h1> Welcome to Tic Tac Toe! </h1>
+            <h1 class="center"> Welcome to Tic Tac Toe! </h1>
             <h2>
-                <span>Player X</span> 
-                <b>VS</b> 
-                <span> Player O</span>
+                Player X <b> VS </b> Player O
             </h2>
             <p> Player X starts, and than each round alternates between X and O starting, regardless of who won.</p>
             <br>
@@ -36,7 +34,7 @@
 
              
             </div>
-            <div id="gameBoard"> 
+            <div id="gameBoard" class="board"> 
                 <p id="winnerDeclaration"></p>
                 <div id="row1"> 
                     <button id="oneOneB" onclick="onButtonClick('oneOne')">

@@ -1,3 +1,32 @@
 body {
     background-color: darkblue;
+    text-align: center;
+    color: white;
+    
+}
+h1 {
+    font-size: 40pt;
+}
+h2 {
+    font-size: 30pt;
+}
+h3 {
+    font-size: 20pt;
+}
+table {
+    margin-left: auto;
+    margin-right: auto;
+    width: 25%;
+    font-size: x-large;
+}
+
+th {
+    font-weight: bold;
+    font-variant: small-caps;
+}
+
+board.button{
+    background-color: darkblue;
+    border-style: none;
+    float: left;
 }
